@@ -25,7 +25,7 @@ class StartupSubmit(models.Model):
     name = models.CharField(max_length=255)
     members_count = models.IntegerField()
     email = models.EmailField()
-    phone_number = models.CharField(max_length=255, blank=False, null=False)
+    phone = models.CharField(max_length=255, blank=True, null=True)
     pitch = models.FileField(upload_to='base/pitches')
 
     def __str__(self):
