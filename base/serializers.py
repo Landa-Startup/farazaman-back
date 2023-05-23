@@ -1,4 +1,4 @@
-from .models import Startup, Contact, StartupSubmit
+from .models import Startup, Event
 from rest_framework import serializers 
 
 
@@ -19,3 +19,8 @@ class StartupSubmitSerializer(serializers.Serializer):
     email = serializers.EmailField()
     phone = serializers.CharField(required=True)
     pitch = serializers.FileField(required=True)
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = '__all__'
