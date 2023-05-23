@@ -1,33 +1,29 @@
-from django.contrib import admin
-from django.urls import path, include
-from .views import index, ContactViewSet, StartupSubmitViewSet, StartupViewSet
+from .views import ContactViewSet, StartupSubmitViewSet, StartupViewSet, EventViewSet
 from rest_framework import routers
-#import as_view 
 
 
 
 router = routers.DefaultRouter()
-#include all urls from router
+router.register('startups', StartupViewSet, basename='startups')
+router.register('contact', StartupViewSet, basename='contact')
+router.register('startup-submit', StartupSubmitViewSet, basename='startup-submit')
+router.register('events', EventViewSet, basename='events')
 
 
-#router.register(r'startupSubmit', StartupSubmitViewSet)
-#router.register(r'startups', StartupViewSet)
-
-contact_router = routers.DefaultRouter()
+contact_router = routers.DefaultRouter('contact')
 contact_router.register(r'contact', ContactViewSet)
 
-startups_router = routers.DefaultRouter()
+
+startups_router = routers.DefaultRouter('startups')
 startups_router.register(r'startups', StartupViewSet)
-startups_router.register(r'startup-submit', StartupSubmitViewSet)
 
 
+startup_submit_router = routers.DefaultRouter('startup-submit')
+startup_submit_router.register(r'startup-submit', StartupSubmitViewSet)
+
+events_router = routers.DefaultRouter('events')
+events_router.register(r'events', EventViewSet)
 
 
-urlpatterns = router.urls + startups_router.urls + contact_router.urls
+urlpatterns = router.urls + startups_router.urls + contact_router.urls + startup_submit_router.urls
 
-# urlpatterns = [
-#     path('', index, name="index"),
-#     #path('startups/', startups, name="startups"),
-#     path('startups/', include(router.urls)),
-#     path('form/', include(router.urls))
-# ]
