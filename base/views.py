@@ -2,10 +2,10 @@ from django.shortcuts import HttpResponse
 from .models import Startup, Contact, StartupSubmit, Event
 from rest_framework import viewsets
 from .serializers import StartupSerializer, ContactSerializer, StartupSubmitSerializer, EventSerializer
+from rest_framework.mixins import CreateModelMixin
 
 def index(request):
     return HttpResponse("index page")
-
 
 class StartupViewSet(viewsets.ModelViewSet):
     queryset = Startup.objects.all()
@@ -16,7 +16,6 @@ class ContactViewSet(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
     http_method_names = ['post']
-
 
 class StartupSubmitViewSet(viewsets.ModelViewSet):
     queryset = StartupSubmit.objects.all()
