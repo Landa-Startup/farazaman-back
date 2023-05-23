@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Startup (models.Model):
     name = models.CharField(max_length=255)
     members = models.TextField()
@@ -21,12 +20,27 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
     
-class StartupSubmit(models.Model):
+class StartupSubmit(models.Model):  
     name = models.CharField(max_length=255)
     members_count = models.IntegerField()
     email = models.EmailField()
     phone = models.CharField(max_length=255, blank=True, null=True)
     pitch = models.FileField(upload_to='base/pitches')
+
+    def __str__(self):
+        return self.name
+    
+class Event(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    date = models.DateField()
+    time = models.TimeField()
+    location = models.CharField(max_length=255)
+    link = models.CharField(max_length=255)
+    created_at =  models.DateTimeField(auto_now_add=True)
+    updated_at =  models.DateTimeField(auto_now=True)
+    flag = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='base/events', blank=True, null=True)
 
     def __str__(self):
         return self.name
