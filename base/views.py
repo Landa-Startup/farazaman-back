@@ -2,7 +2,6 @@ from django.shortcuts import HttpResponse
 from .models import Startup, Contact, StartupSubmit, Event
 from rest_framework import viewsets
 from .serializers import StartupSerializer, ContactSerializer, StartupSubmitSerializer, EventSerializer
-from rest_framework.mixins import CreateModelMixin
 
 def index(request):
     return HttpResponse("index page")
