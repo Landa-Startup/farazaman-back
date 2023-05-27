@@ -29,6 +29,7 @@ class StartupSubmitSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'members_count', 'email', 'phone', 'pitch']
         read_only_fields = ['id']
 
+    
     def create(self, validated_data):
         validated_data['phone'] = self.initial_data.get('phone')
         validated_data['pitch'] = self.initial_data.get('pitch')
