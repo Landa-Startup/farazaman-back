@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Startup (models.Model):
     name = models.CharField(max_length=255)
     members = models.TextField()
@@ -9,18 +10,20 @@ class Startup (models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Contact(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     message = models.TextField()
     phone = models.CharField(max_length=255, blank=True, null=True)
-    created_at =  models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-    
-class StartupSubmit(models.Model):  
+
+
+class StartupSubmit(models.Model):
     name = models.CharField(max_length=255)
     members_count = models.IntegerField()
     email = models.EmailField()
@@ -29,7 +32,8 @@ class StartupSubmit(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Event(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -37,10 +41,32 @@ class Event(models.Model):
     time = models.TimeField()
     location = models.CharField(max_length=255)
     link = models.CharField(max_length=255)
-    created_at =  models.DateTimeField(auto_now_add=True)
-    updated_at =  models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     flag = models.BooleanField(default=False)
     image = models.ImageField(upload_to='base/events', blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+
+class Hire(models.Model):
+    PUYESH = "PU"
+    NORMAL = "NO"
+    HIRE_TYPE = [
+        (PUYESH, "Puyesh"),
+        (NORMAL, "Normal"),
+    ]
+    name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    email = models.EmailField()
+    resume = models.FileField(upload_to='base/resumes')
+    hireType = models.CharField(
+        max_length=2,
+        choices=HIRE_TYPE,
+        default=NORMAL,
+    )
+
+    def __str__(self):
+        return self.name
+    # name - phone - email - file cv - type hire
