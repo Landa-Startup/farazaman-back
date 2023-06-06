@@ -1,5 +1,5 @@
-from .models import Startup, Event, Contact, StartupSubmit
-from rest_framework import serializers 
+from .models import Startup, Event, Contact, StartupSubmit, Hire
+from rest_framework import serializers
 
 
 class StartupSerializer(serializers.ModelSerializer):
@@ -16,20 +16,19 @@ class ContactSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data['phone'] = self.initial_data.get('phone')
-        
+
         if not validated_data['phone']:
             raise serializers.ValidationError("Phone is required.")
 
         return super().create(validated_data)
-    
-    
+
+
 class StartupSubmitSerializer(serializers.ModelSerializer):
     class Meta:
         model = StartupSubmit
         fields = ['id', 'name', 'members_count', 'email', 'phone', 'pitch']
         read_only_fields = ['id']
 
-    
     def create(self, validated_data):
         validated_data['phone'] = self.initial_data.get('phone')
         validated_data['pitch'] = self.initial_data.get('pitch')
@@ -43,8 +42,13 @@ class StartupSubmitSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
+        fields = '__all__'
+
+
+class HireSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hire
         fields = '__all__'
