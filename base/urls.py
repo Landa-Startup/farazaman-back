@@ -1,4 +1,4 @@
-from .views import StartupSubmitViewSet, StartupViewSet, EventViewSet, ContactViewSet, HireViewSet
+from .views import StartupSubmitViewSet, StartupViewSet, EventViewSet, ContactViewSet, HireViewSet, EventAttendeesViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -8,6 +8,7 @@ router.register('hire', HireViewSet, basename='hire')
 router.register('startup-submit', StartupSubmitViewSet,
                 basename='startup-submit')
 router.register('events', EventViewSet, basename='events')
+router.register('attendees', EventAttendeesViewSet, basename='attendees')
 
 
 contact_router = routers.DefaultRouter('contact')
@@ -25,6 +26,9 @@ startup_submit_router.register(r'startup-submit', StartupSubmitViewSet)
 
 events_router = routers.DefaultRouter('events')
 events_router.register(r'events', EventViewSet)
+
+attendees_router = routers.DefaultRouter('attendees')
+router.register(r'attendees', EventAttendeesViewSet)
 
 
 urlpatterns = router.urls + startups_router.urls + \

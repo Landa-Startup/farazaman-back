@@ -1,7 +1,7 @@
 from django.shortcuts import HttpResponse
-from .models import Startup, Contact, StartupSubmit, Event, Hire
+from .models import Startup, Contact, StartupSubmit, Event, Hire, EventAttendees
 from rest_framework import viewsets
-from .serializers import StartupSerializer, ContactSerializer, StartupSubmitSerializer, EventSerializer, HireSerializer
+from .serializers import EventAttendeesSerializer, StartupSerializer, ContactSerializer, StartupSubmitSerializer, EventSerializer, HireSerializer
 from rest_framework.parsers import FormParser, MultiPartParser
 from django.middleware.csrf import get_token
 from rest_framework.views import APIView
@@ -40,6 +40,11 @@ class EventViewSet(viewsets.ModelViewSet):
 class HireViewSet(viewsets.ModelViewSet):
     queryset = Hire.objects.all()
     serializer_class = HireSerializer
+    http_method_names = ['post']
+
+class EventAttendeesViewSet(viewsets.ModelViewSet):
+    queryset = EventAttendees.objects.all()
+    serializer_class = EventAttendeesSerializer
     http_method_names = ['post']
 
 # for generate csrf token

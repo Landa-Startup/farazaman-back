@@ -1,4 +1,4 @@
-from .models import Startup, Event, Contact, StartupSubmit, Hire
+from .models import Startup, Event, Contact, StartupSubmit, Hire, EventAttendees
 from rest_framework import serializers
 
 
@@ -51,4 +51,10 @@ class EventSerializer(serializers.ModelSerializer):
 class HireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hire
+        fields = '__all__'
+
+
+class EventAttendeesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventAttendees
         fields = '__all__'

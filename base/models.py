@@ -70,3 +70,13 @@ class Hire(models.Model):
     def __str__(self):
         return self.name
     # name - phone - email - file cv - type hire
+
+class EventAttendees (models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='attendees')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
