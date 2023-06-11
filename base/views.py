@@ -54,3 +54,5 @@ class CSRFTokenView(APIView):
     def get(self, request, format=None):
         token = get_token(request)
         return Response({'csrfToken': token})
+    
+    

@@ -58,3 +58,4 @@ class EventAttendeesSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendees
         fields = '__all__'
+        

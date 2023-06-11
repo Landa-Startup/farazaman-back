@@ -33,3 +33,4 @@ router.register(r'attendees', EventAttendeesViewSet)
 
 urlpatterns = router.urls + startups_router.urls + \
     contact_router.urls + startup_submit_router.urls
+
