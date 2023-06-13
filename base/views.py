@@ -1,4 +1,3 @@
-from django.shortcuts import HttpResponse
 from .models import Startup, Contact, StartupSubmit, Event, Hire, EventAttendees, WorkSpace
 from rest_framework import viewsets
 from .serializers import EventAttendeesSerializer, StartupSerializer, ContactSerializer, StartupSubmitSerializer, EventSerializer, HireSerializer, WorkSpaceSerializer
