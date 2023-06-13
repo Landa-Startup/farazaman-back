@@ -45,22 +45,22 @@ class StartupSubmitSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ('id', 'name', 'description', 'date', 'time', 'location', 'link', 'created_at', 'updated_at', 'flag', 'image')
 
 
 class HireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hire
-        fields = '__all__'
+        fields = ('id', 'name', 'phone', 'type', 'created_at', 'updated_at')
 
 
 class EventAttendeesSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendees
-        fields = '__all__'
+        fields = ('id', 'name', 'email', 'phone', 'event', 'created_at')
 
 class WorkSpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkSpace
-        fields = '__all__'
+        fields = ('id', 'name', 'email', 'phone', 'created_at')
         
