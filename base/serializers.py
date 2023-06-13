@@ -51,16 +51,19 @@ class EventSerializer(serializers.ModelSerializer):
 class HireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hire
-        fields = ('id', 'name', 'phone', 'type', 'created_at', 'updated_at')
+        fields = ('id', 'name', 'phone', 'hireType', 'resume')
+        read_only_fields = ['id']
 
 
 class EventAttendeesSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendees
         fields = ('id', 'name', 'email', 'phone', 'event', 'created_at')
+        read_only_fields = ['id', 'created_at']
 
 class WorkSpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkSpace
         fields = ('id', 'name', 'email', 'phone', 'created_at')
+        read_only_fields = ['id', 'created_at']
         
