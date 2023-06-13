@@ -8,10 +8,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-def index(request):
-    return HttpResponse("index page")
-
-
 class StartupViewSet(viewsets.ModelViewSet):
     queryset = Startup.objects.all()
     serializer_class = StartupSerializer
