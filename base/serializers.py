@@ -52,7 +52,7 @@ class EventSerializer(serializers.ModelSerializer):
 class HireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hire
-        fields = ('id', 'name', 'phone', 'hireType', 'resume')
+        fields = ('id', 'name', 'phone', 'hireType', 'resume', 'email')
         read_only_fields = ['id']
 
 
