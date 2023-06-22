@@ -1,5 +1,6 @@
-from .models import Startup, Event, Contact, StartupSubmit, Hire, EventAttendees, WorkSpace
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+from .models import Startup, Event, Contact, StartupSubmit, Hire, EventAttendees, WorkSpace
 
 
 class StartupSerializer(serializers.ModelSerializer):
@@ -18,7 +19,7 @@ class ContactSerializer(serializers.ModelSerializer):
         validated_data['phone'] = self.initial_data.get('phone')
 
         if not validated_data['phone']:
-            raise serializers.ValidationError("Phone is required.")
+            raise ValidationError({"phone": "Phone is required."})
 
         return super().create(validated_data)
 
@@ -34,10 +35,10 @@ class StartupSubmitSerializer(serializers.ModelSerializer):
         validated_data['pitch'] = self.initial_data.get('pitch')
 
         if not validated_data['phone']:
-            raise serializers.ValidationError("Phone is required.")
+            raise ValidationError({"phone": "Phone is required."})
 
         if not validated_data['pitch']:
-            raise serializers.ValidationError("Pitch is required.")
+            raise ValidationError({"pitch": "Pitch is required."})
 
         return super().create(validated_data)
 
@@ -45,22 +46,33 @@ class StartupSubmitSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ('id', 'name', 'description', 'date', 'time', 'location', 'link', 'created_at', 'updated_at', 'flag', 'image')
 
 
 class HireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hire
-        fields = '__all__'
+        fields = ('id', 'name', 'phone', 'hireType', 'resume')
+        read_only_fields = ['id']
 
 
 class EventAttendeesSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventAttendees
-        fields = '__all__'
+        fields = ('id', 'name', 'email', 'phone', 'event', 'created_at')
+        read_only_fields = ['id', 'created_at']
+
+    def create(self, validated_data):
+        validated_data['phone'] = self.initial_data.get('phone')
+
+        if not validated_data['phone']:
+            raise ValidationError({"phone": "Phone is required."})
+
+        return super().create(validated_data)
+
 
 class WorkSpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkSpace
-        fields = '__all__'
-        
+        fields = ('id', 'name', 'email', 'phone', 'created_at')
+        read_only_fields = ['id', 'created_at']

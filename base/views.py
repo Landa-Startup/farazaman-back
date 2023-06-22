@@ -1,4 +1,3 @@
-from django.shortcuts import HttpResponse
 from .models import Startup, Contact, StartupSubmit, Event, Hire, EventAttendees, WorkSpace
 from rest_framework import viewsets
 from .serializers import EventAttendeesSerializer, StartupSerializer, ContactSerializer, StartupSubmitSerializer, EventSerializer, HireSerializer, WorkSpaceSerializer
@@ -6,10 +5,6 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from django.middleware.csrf import get_token
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
-
-def index(request):
-    return HttpResponse("index page")
 
 
 class StartupViewSet(viewsets.ModelViewSet):
