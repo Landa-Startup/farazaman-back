@@ -39,7 +39,7 @@ Thumbs.db
 .env
 
 # Ignore database migrations
-**/migrations/
+#**/migrations/
 
 # Ignore sensitive or confidential information
 secrets.json

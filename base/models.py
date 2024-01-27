@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Startup (models.Model):
@@ -23,9 +24,14 @@ class Contact(models.Model):
         return self.name
 
 
+def positive_validator(value):
+    if value <= 0:
+        raise ValidationError("members count must be positive")
+
+
 class StartupSubmit(models.Model):
     name = models.CharField(max_length=255)
-    members_count = models.IntegerField()
+    members_count = models.PositiveIntegerField(validators=[positive_validator])
     email = models.EmailField()
     phone = models.CharField(max_length=255, blank=True, null=True)
     pitch = models.FileField(upload_to='base/pitches')
