@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from .models import Startup, Event, Contact, StartupSubmit, Hire, EventAttendees, WorkSpace
+from .models import Startup, Event, Contact, StartupSubmit, Hire, EventAttendees, WorkSpace, Internship
 
 
 class StartupSerializer(serializers.ModelSerializer):
@@ -75,4 +75,10 @@ class WorkSpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkSpace
         fields = ('id', 'name', 'email', 'phone', 'created_at')
+        read_only_fields = ['id', 'created_at']
+
+class InternshipViewSet(serializers.ModelSerializer):
+    class Meta:
+        model = Internship
+        fields = ('id', 'name', 'email', 'phone', 'university', 'cvFile', 'created_at')
         read_only_fields = ['id', 'created_at']

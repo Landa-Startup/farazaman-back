@@ -97,3 +97,10 @@ class WorkSpace (models.Model):
     def __str__(self):
         return self.name
     
+class Internship(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50)
+    university = models.CharField(max_length=150)
+    cvFile = models.FileField(upload_to='cv-files', editable=True, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)

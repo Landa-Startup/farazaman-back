@@ -1,4 +1,4 @@
-from .views import StartupSubmitViewSet, StartupViewSet, EventViewSet, ContactViewSet, HireViewSet, EventAttendeesViewSet, WorkSpaceViewSet
+from .views import StartupSubmitViewSet, StartupViewSet, EventViewSet, ContactViewSet, HireViewSet, EventAttendeesViewSet, WorkSpaceViewSet, InternshipViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -34,9 +34,10 @@ router.register(r'attendees', EventAttendeesViewSet)
 workspace_router = routers.DefaultRouter('workspace')
 router.register(r'workspace', WorkSpaceViewSet)
 
-
+internship_router = routers.DefaultRouter('internship')
+router.register(r'workspace', InternshipViewSet)
 
 
 urlpatterns = router.urls + startups_router.urls + \
-    contact_router.urls + startup_submit_router.urls
+    contact_router.urls + startup_submit_router.urls+ internship_router.urls + workspace_router.urls + attendees_router.urls
 
