@@ -35,7 +35,7 @@ workspace_router = routers.DefaultRouter('workspace')
 router.register(r'workspace', WorkSpaceViewSet)
 
 internship_router = routers.DefaultRouter('internship')
-router.register(r'workspace', InternshipViewSet)
+router.register(r'internship', InternshipViewSet)
 
 
 urlpatterns = router.urls + startups_router.urls + \
